@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hature | Hakimi & Cat Science</title>
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#121a2a;
+      --card2:#0f1626;
+      --text:#e9eefc;
+      --muted:#a7b4d6;
+      --accent:#7cf0c8;
+      --accent2:#7aa7ff;
+      --warn:#ffcf5a;
+      --danger:#ff6b6b;
+      --ok:#57e389;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius:16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(122,167,255,.20), transparent 55%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(124,240,200,.18), transparent 60%),
+        radial-gradient(900px 600px at 40% 100%, rgba(255,207,90,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px}
+    .topbar{
+      display:flex;align-items:center;gap:16px;justify-content:space-between;
+      position:sticky;top:0;z-index:5;
+      background:linear-gradient(to bottom, rgba(11,15,25,.92), rgba(11,15,25,.72));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar .wrap{padding:14px 24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(124,240,200,.95), transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(122,167,255,.95), transparent 50%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      display:grid;place-items:center;
+      font-weight:900;letter-spacing:.5px;
+    }
+    .brand h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.3px;
+      line-height:1.1;
+    }
+    .brand small{display:block;color:var(--muted);font-weight:600;margin-top:2px}
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      padding:9px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+    }
+    .pill:hover{border-color:rgba(124,240,200,.35);color:var(--text)}
+    .pill.primary{
+      background:linear-gradient(135deg, rgba(124,240,200,.22), rgba(122,167,255,.18));
+      color:var(--text);
+      border-color:rgba(124,240,200,.35);
+    }
+
+    .hero{
+      padding:28px 0 10px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .hero{grid-template-columns:1fr} }
+    .card{
+      background:linear-gradient(180deg, rgba(18,26,42,.85), rgba(15,22,38,.85));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:18px 18px 10px;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .card .hd h2{margin:0;font-size:16px;letter-spacing:.2px}
+    .badge{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    .card .bd{padding:18px}
+    .lead{
+      font-size:15px;line-height:1.65;color:rgba(233,238,252,.92);
+      margin:0 0 12px;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 560px){ .kpi{grid-template-columns:1fr} }
+    .kpi .box{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(255,255,255,.03);
+    }
+    .kpi .box b{display:block;font-size:18px}
+    .kpi .box span{color:var(--muted);font-size:12px;font-weight:700}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin:18px 0 24px;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap;
+      padding:14px 14px 0;
+    }
+    .tabbtn{
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+    }
+    .tabbtn.active{
+      color:var(--text);
+      border-color:rgba(124,240,200,.35);
+      background:linear-gradient(135deg, rgba(124,240,200,.18), rgba(122,167,255,.12));
+    }
+    .panel{display:none;padding:16px 18px 18px}
+    .panel.active{display:block}
+
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width: 760px){ .row{grid-template-columns:1fr} }
+
+    label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}
+    input,select,textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+      font-family:var(--sans);
+    }
+    textarea{min-height:110px;resize:vertical}
+    input[type="file"]{padding:10px}
+    input:focus,select:focus,textarea:focus{border-color:rgba(122,167,255,.55)}
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px
+    }
+    button{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius:12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    button.primary{
+      border-color:rgba(124,240,200,.40);
+      background:linear-gradient(135deg, rgba(124,240,200,.22), rgba(122,167,255,.16));
+    }
+    button.danger{
+      border-color:rgba(255,107,107,.55);
+      background:linear-gradient(135deg, rgba(255,107,107,.18), rgba(255,207,90,.10));
+    }
+    .note{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.55;
+      margin-top:8px;
+    }
+    .toast{
+      display:none;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+    .toast.ok{border-color:rgba(87,227,137,.45)}
+    .toast.warn{border-color:rgba(255,207,90,.5)}
+    .toast.bad{border-color:rgba(255,107,107,.5)}
+    .hr{height:1px;background:var(--border);margin:14px 0}
+    .list{
+      display:flex;flex-direction:column;gap:10px
+    }
+    .paper{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(255,255,255,.03);
+    }
+    .paper h3{margin:0 0 4px;font-size:14px}
+    .paper p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.55}
+    .meta{
+      display:flex;gap:8px;flex-wrap:wrap;margin-top:8px
+    }
+    .tag{
+      font-size:12px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:rgba(0,0,0,.16);
+      font-family:var(--mono);
+    }
+    footer{
+      border-top:1px solid var(--border);
+      padding:18px 0 30px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .two{
+      display:grid;grid-template-columns: 1fr 1fr;gap:14px
+    }
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+    .callout{
+      border:1px dashed rgba(124,240,200,.38);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(124,240,200,.06);
+    }
+    .callout b{color:var(--text)}
+    .kbd{
+      font-family:var(--mono);
+      padding:2px 6px;border-radius:8px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">H</div>
+        <div>
+          <h1>Hature</h1>
+          <small>Journal of Hakimi Studies & Cat Science</small>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a class="pill" href="#home" onclick="scrollToId('home')">首页</a>
+        <a class="pill" href="#aims" onclick="scrollToId('aims')">刊物宗旨</a>
+        <a class="pill" href="#articles" onclick="scrollToId('articles')">最新文章</a>
+        <a class="pill primary" href="#submit" onclick="scrollToId('submit')">投稿系统</a>
+        <a class="pill" href="#guides" onclick="scrollToId('guides')">作者指南</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="home">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="card">
+        <div class="hd">
+          <h2>🔬 让哈基米的“哈气”成为可重复的科学</h2>
+          <span class="badge">ISSN 404-HAKI · OA / Hybrid · Rolling</span>
+        </div>
+        <div class="bd">
+          <p class="lead">
+            <b>Hature</b> 致力于发表关于猫科行为、声音信号、呼吸气流动力学、情绪表达与人猫交互的高质量研究。
+            我们欢迎任何严谨的实验、观察、建模与复现工作——包括但不限于 <b>哈基米哈气（Hakimi Hiss）</b>、呼气音谱、
+            “嫌弃指数”的量化评估，以及基于零食诱导的对照试验。
+          </p>
+          <div class="two">
+            <div class="callout">
+              <b>主打专题：</b> Hakimi Hiss（哈气）机制、猫猫社交距离模型、零食对行为的因果效应、猫爪接触动力学
+              <div class="note">投稿范围：Behavior · Bioacoustics · Fluid Dynamics · Human–Animal Interaction</div>
+            </div>
+            <div class="callout" style="border-color:rgba(122,167,255,.45);background:rgba(122,167,255,.06)">
+              <b>快速通道：</b> 如果你的数据集包含 <span class="kbd">≥ 30 次</span> 哈气事件、并提供原始音频/视频，我们将优先送审。
+              <div class="note">建议附：实验脚本、标注文件、统计报告（CSV/JSON）</div>
+            </div>
+          </div>
+
+          <div class="kpi" aria-label="Journal metrics">
+            <div class="box"><b>12–21 天</b><span>首轮审稿中位数</span></div>
+            <div class="box"><b>3.7</b><span>H-Index（猫学子刊）</span></div>
+            <div class="box"><b>9/10</b><span>哈基米可爱度（编辑部）</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd">
+          <h2>🧪 Featured Call for Papers</h2>
+          <span class="badge">Special Issue</span>
+        </div>
+        <div class="bd">
+          <div class="paper">
+            <h3>Special Issue: “Hakimi Hiss & the Physics of Disdain”</h3>
+            <p>征稿：哈气触发阈值、声学特征、气流形态、情绪-生理耦合、跨个体差异与可复现基准。</p>
+            <div class="meta">
+              <span class="tag">Deadline: Rolling</span>
+              <span class="tag">Data: encouraged</span>
+              <span class="tag">Code: encouraged</span>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="note">
+            提醒：本网页为前端演示。点击投稿会生成“模拟稿件编号”，不做真实上传。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aims -->
+    <section id="aims" class="grid">
+      <div class="card">
+        <div class="hd"><h2>🎯 刊物宗旨（Aims & Scope）</h2><span class="badge">Scope v1.0</span></div>
+        <div class="bd">
+          <ul style="margin:0;padding-left:18px;line-height:1.8;color:rgba(233,238,252,.92)">
+            <li><b>行为学</b>：哈气、炸毛、甩尾、贴贴/拒贴贴、领地边界</li>
+            <li><b>声学与信号</b>：哈气音谱（hiss spectrogram）、呼噜与警戒音对比</li>
+            <li><b>气流动力学</b>：口鼻喷流、湍流强度、近距离气溶胶扩散（安全场景）</li>
+            <li><b>人猫交互</b>：零食干预、抱抱实验、陌生人接近试验（伦理优先）</li>
+            <li><b>方法学</b>：标注协议、基准数据集、复现性与统计严谨性</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" id="guides">
+        <div class="hd"><h2>📌 作者指南（摘要版）</h2><span class="badge">Guidelines</span></div>
+        <div class="bd">
+          <div class="note" style="margin-top:0">
+            <b>稿件类型：</b> Original Article / Short Communication / Data Descriptor / Methods
+          </div>
+          <div class="hr"></div>
+          <ul style="margin:0;padding-left:18px;line-height:1.8;color:rgba(233,238,252,.92)">
+            <li><b>结构</b>：Title · Abstract · Methods · Results · Discussion · Data/Code Availability</li>
+            <li><b>伦理</b>：不鼓励诱发应激；避免强制接触；零食剂量应可控并报告</li>
+            <li><b>数据</b>：鼓励提供原始音频/视频片段或特征提取脚本</li>
+            <li><b>图表</b>：推荐提供音谱图、行为时序、事件触发热图</li>
+          </ul>
+          <div class="hr"></div>
+          <div class="callout" style="margin:0">
+            <b>编辑部最爱：</b> “哈气事件”严格定义 + 盲法标注 + 可复现脚本 + 公开数据（或合理受限说明）
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles -->
+    <section id="articles" class="card">
+      <div class="hd">
+        <h2>📰 最新文章（Latest Articles）</h2>
+        <span class="badge">Updated: locally</span>
+      </div>
+      <div class="bd">
+        <div class="list">
+          <div class="paper">
+            <h3>Quantifying Hakimi Hiss: A Multi-Modal Protocol for Disdain Events</h3>
+            <p>提出“哈气事件”标注指南：声学阈值 + 面部表情 + 尾巴角度三模态融合，并给出可复现基准脚本。</p>
+            <div class="meta">
+              <span class="tag">Behavior</span><span class="tag">Methods</span><span class="tag">Open Data</span>
+            </div>
+          </div>
+          <div class="paper">
+            <h3>Snack-Induced Causality: Randomized Trials on Approach Distance in Cats</h3>
+            <p>随机对照试验显示：零食干预显著缩短人猫最小接近距离，但对“哈气概率”存在个体差异。</p>
+            <div class="meta">
+              <span class="tag">RCT</span><span class="tag">HCI</span><span class="tag">Statistics</span>
+            </div>
+          </div>
+          <div class="paper">
+            <h3>Hiss Flow Fields: A Toy CFD Model of Cat Expiratory Jets</h3>
+            <p>用简化CFD模型模拟哈气喷流的湍流结构，并讨论在自然低应激场景下的测量方法。</p>
+            <div class="meta">
+              <span class="tag">Fluid</span><span class="tag">Modeling</span><span class="tag">Safety</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submission system -->
+    <section id="submit" class="card" style="margin-top:18px">
+      <div class="hd">
+        <h2>🧾 投稿系统（ManuscriptCentral · Demo）</h2>
+        <span class="badge">Portal</span>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Submission tabs">
+        <button class="tabbtn active" data-tab="login" role="tab">登录 / 注册</button>
+        <button class="tabbtn" data-tab="newsub" role="tab">新建投稿</button>
+        <button class="tabbtn" data-tab="status" role="tab">稿件状态</button>
+        <button class="tabbtn" data-tab="help" role="tab">帮助 & FAQ</button>
+      </div>
+
+      <div class="panel active" id="login" role="tabpanel">
+        <div class="row">
+          <div>
+            <label>邮箱（Email）</label>
+            <input id="email" placeholder="hakimi.author@catmail.com" />
+          </div>
+          <div>
+            <label>密码（Password）</label>
+            <input id="pw" type="password" placeholder="••••••••" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="demoLogin()">登录</button>
+          <button onclick="fillDemo()">一键填入演示账号</button>
+          <button class="danger" onclick="demoLogout()">退出</button>
+        </div>
+        <div class="toast" id="toastLogin"></div>
+        <p class="note">提示：这是演示页面，不会联网。登录仅用于解锁“新建投稿”按钮体验。</p>
+      </div>
+
+      <div class="panel" id="newsub" role="tabpanel">
+        <div class="callout" style="margin-bottom:12px">
+          <b>投稿清单（Checklist）：</b> 标题/摘要/关键词/稿件类型/伦理声明/数据与代码可用性/上传主文档与补充材料
+        </div>
+
+        <div class="row">
+          <div>
+            <label>稿件类型（Article Type）</label>
+            <select id="atype">
+              <option>Original Article</option>
+              <option>Short Communication</option>
+              <option>Methods</option>
+              <option>Data Descriptor</option>
+              <option>Review</option>
+            </select>
+          </div>
+          <div>
+            <label>研究主题（Topic）</label>
+            <select id="topic">
+              <option>Hakimi Hiss (哈气)</option>
+              <option>Cat Behavior (行为学)</option>
+              <option>Bioacoustics (声学)</option>
+              <option>Human–Cat Interaction (人猫交互)</option>
+              <option>Fluid Dynamics (气流动力学)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>标题（Title）</label>
+          <input id="title" placeholder="e.g., A Reproducible Protocol for Measuring Hakimi Hiss Events" />
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>通讯作者（Corresponding Author）</label>
+            <input id="ca" placeholder="e.g., Dr. Hakimi Meow" />
+          </div>
+          <div>
+            <label>机构（Affiliation）</label>
+            <input id="aff" placeholder="e.g., Institute of Feline Dynamics" />
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>摘要（Abstract）</label>
+          <textarea id="abs" placeholder="简要说明研究背景、方法、结果与结论。建议包含：哈气定义、样本量、统计方法与可复现资源。"></textarea>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>关键词（Keywords，用逗号分隔）</label>
+          <input id="kw" placeholder="hakimi, hiss, cat behavior, spectrogram, reproducibility" />
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>主文档（Manuscript PDF/DOCX）</label>
+            <input id="fileMain" type="file" />
+          </div>
+          <div>
+            <label>补充材料（Supplementary, optional）</label>
+            <input id="fileSup" type="file" />
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>数据与代码可用性（Data/Code Availability）</label>
+          <textarea id="avail" placeholder="例如：数据与脚本将于接受后公开；或在合理限制下提供（注明原因与获取方式）。"></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="submitDemo()">提交稿件（模拟）</button>
+          <button onclick="autoFillManuscript()">自动填充示例内容</button>
+          <button class="danger" onclick="clearForm()">清空表单</button>
+        </div>
+        <div class="toast" id="toastSub"></div>
+
+        <p class="note">
+          注意：演示提交只会在本页面生成一个“稿件编号（HN-YYYYMMDD-xxxx）”，并不会真实上传文件。
+        </p>
+      </div>
+
+      <div class="panel" id="status" role="tabpanel">
+        <div class="row">
+          <div>
+            <label>稿件编号（Manuscript ID）</label>
+            <input id="msid" placeholder="e.g., HN-20260226-0381" />
+          </div>
+          <div>
+            <label>查询邮箱（Email）</label>
+            <input id="qmail" placeholder="same as submission email" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="queryStatus()">查询状态（模拟）</button>
+          <button onclick="useLastId()">使用最近一次提交编号</button>
+        </div>
+        <div class="toast" id="toastStatus"></div>
+
+        <div class="hr"></div>
+        <div class="note">
+          常见状态：<span class="kbd">Submitted</span> → <span class="kbd">With Editor</span> → <span class="kbd">Under Review</span> → <span class="kbd">Decision</span> → <span class="kbd">Accepted</span>
+        </div>
+      </div>
+
+      <div class="panel" id="help" role="tabpanel">
+        <div class="list">
+          <div class="paper">
+            <h3>Q: “哈基米哈气”能算科研吗？</h3>
+            <p>A: 只要你定义清晰、方法可复现、统计严谨、伦理合规——当然算。Hature 最欢迎把“可爱”做成“可验证”。</p>
+          </div>
+          <div class="paper">
+            <h3>Q: 需要提供视频吗？</h3>
+            <p>A: 强烈建议。至少提供音频/音谱图生成脚本与标注文件（时间戳 + 事件类别）。</p>
+          </div>
+          <div class="paper">
+            <h3>Q: 审稿人会不会质疑“哈气事件”定义？</h3>
+            <p>A: 会。建议写清楚触发条件、排除标准（如打喷嚏/咳嗽/环境噪声），并进行双人盲法标注一致性评估。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap" style="padding:0">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+          <div>© <span id="year"></span> Hature Publishing · “Science, but make it Hakimi.”</div>
+          <div>UI Demo · No network · No real uploads</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    // Tabs
+    const tabButtons = Array.from(document.querySelectorAll(".tabbtn"));
+    const panels = Array.from(document.querySelectorAll(".panel"));
+    tabButtons.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const tab = btn.dataset.tab;
+        tabButtons.forEach(b=>b.classList.toggle("active", b===btn));
+        panels.forEach(p=>p.classList.toggle("active", p.id===tab));
+        // guard newsub if not logged in
+        if(tab==="newsub" && !state.loggedIn){
+          showToast("toastSub","请先在“登录/注册”里登录（演示）。", "warn");
+          document.querySelector('[data-tab="login"]').click();
+        }
+      });
+    });
+
+    // State
+    const state = {
+      loggedIn:false,
+      user:null,
+      lastManuscriptId:null
+    };
+
+    function setToast(elId, msg, type){
+      const el = document.getElementById(elId);
+      el.className = "toast " + (type || "");
+      el.textContent = msg;
+      el.style.display = "block";
+    }
+    function hideToast(elId){
+      const el = document.getElementById(elId);
+      if(el) el.style.display = "none";
+    }
+    function showToast(elId, msg, type){
+      setToast(elId, msg, type);
+      setTimeout(()=>hideToast(elId), 4500);
+    }
+
+    function fillDemo(){
+      document.getElementById("email").value = "hakimi.author@catmail.com";
+      document.getElementById("pw").value = "hakimi1234";
+      showToast("toastLogin","已填入演示账号。点击“登录”。","ok");
+    }
+
+    function demoLogin(){
+      const email = (document.getElementById("email").value || "").trim();
+      const pw = (document.getElementById("pw").value || "").trim();
+      if(!email || !pw){
+        return showToast("toastLogin","请输入邮箱与密码。","warn");
+      }
+      state.loggedIn = true;
+      state.user = email;
+      showToast("toastLogin",`登录成功：${email}（演示）`,"ok");
+    }
+
+    function demoLogout(){
+      state.loggedIn = false;
+      state.user = null;
+      showToast("toastLogin","已退出登录。","ok");
+    }
+
+    function autoFillManuscript(){
+      document.getElementById("atype").value = "Original Article";
+      document.getElementById("topic").value = "Hakimi Hiss (哈气)";
+      document.getElementById("title").value = "A Reproducible Protocol for Measuring Hakimi Hiss Events Using Audio–Video Annotations";
+      document.getElementById("ca").value = "Dr. Hakimi Meow";
+      document.getElementById("aff").value = "Institute of Feline Dynamics";
+      document.getElementById("abs").value =
+`背景：哈基米哈气（Hakimi hiss）常被视为“情绪表达”，但缺乏可复现的事件定义与量化框架。
+方法：我们建立三模态标注协议（声学阈值、面部特征、尾巴角度），并对≥30次哈气事件进行盲法双人标注与一致性评估。
+结果：该协议可区分哈气与非哈气呼气声，事件检测在个体内稳定、个体间存在显著差异。
+结论：本研究提供可复现的哈气事件定义与分析流程，为后续人猫交互与行为干预研究提供基准。`;
+      document.getElementById("kw").value = "hakimi, hiss, cat behavior, spectrogram, annotation, reproducibility";
+      document.getElementById("avail").value =
+"数据与代码：将于录用后公开（含标注模板、音谱图生成脚本与统计报告）；若受限，可邮件联系通讯作者获取。";
+      showToast("toastSub","已自动填充示例稿件信息。","ok");
+    }
+
+    function clearForm(){
+      ["title","ca","aff","abs","kw","avail"].forEach(id=>document.getElementById(id).value="");
+      ["fileMain","fileSup"].forEach(id=>document.getElementById(id).value="");
+      showToast("toastSub","表单已清空。","ok");
+    }
+
+    function randInt(min,max){
+      return Math.floor(Math.random()*(max-min+1))+min;
+    }
+
+    function submitDemo(){
+      if(!state.loggedIn){
+        return showToast("toastSub","请先登录（演示）。","warn");
+      }
+      const title = (document.getElementById("title").value || "").trim();
+      const abs = (document.getElementById("abs").value || "").trim();
+      const ca = (document.getElementById("ca").value || "").trim();
+      if(title.length < 10) return showToast("toastSub","标题太短，请完善。","warn");
+      if(abs.length < 80) return showToast("toastSub","摘要太短，请补充方法/结果/结论。","warn");
+      if(!ca) return showToast("toastSub","请填写通讯作者。","warn");
+
+      // File presence is optional in demo, but we nudge
+      const mainFile = document.getElementById("fileMain").files.length;
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth()+1).padStart(2,"0");
+      const d = String(today.getDate()).padStart(2,"0");
+      const id = `HN-${y}${m}${d}-${randInt(1000,9999)}`;
+      state.lastManuscriptId = id;
+
+      const hint = mainFile ? "已检测到主文档（仅演示，不上传）。" : "未选择主文档（演示允许，但真实投稿不建议）。";
+      showToast("toastSub",`✅ 提交成功（模拟）｜稿件编号：${id}｜${hint}`,"ok");
+      // move to status tab
+      document.querySelector('[data-tab="status"]').click();
+      document.getElementById("msid").value = id;
+      document.getElementById("qmail").value = state.user || "";
+    }
+
+    function useLastId(){
+      if(!state.lastManuscriptId){
+        return showToast("toastStatus","还没有提交记录。先去“新建投稿”提交一次（模拟）。","warn");
+      }
+      document.getElementById("msid").value = state.lastManuscriptId;
+      document.getElementById("qmail").value = state.user || "";
+      showToast("toastStatus","已填入最近一次稿件编号。","ok");
+    }
+
+    function queryStatus(){
+      const id = (document.getElementById("msid").value || "").trim();
+      const mail = (document.getElementById("qmail").value || "").trim();
+      if(!id || !id.startsWith("HN-")){
+        return showToast("toastStatus","请输入有效稿件编号（形如 HN-YYYYMMDD-xxxx）。","warn");
+      }
+      if(!mail){
+        return showToast("toastStatus","请输入查询邮箱。","warn");
+      }
+      // deterministic-ish demo status
+      const stages = ["Submitted", "With Editor", "Under Review", "Decision", "Accepted"];
+      let score = 0;
+      for(const ch of id) score += ch.charCodeAt(0);
+      const idx = score % stages.length;
+
+      const extras = [
+        "编辑部已收到稿件，等待分配编辑。",
+        "已分配处理编辑，进行格式初筛。",
+        "已送审，等待审稿意见返回。",
+        "审稿意见已汇总，准备决策。",
+        "恭喜：录用（演示）！请按编辑意见润色并提交最终稿。"
+      ];
+
+      showToast("toastStatus",`📄 ${id} ｜状态：${stages[idx]} ｜说明：${extras[idx]}`,"ok");
+    }
+
+    // footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
