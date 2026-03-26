@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Authors | Hature</title>
+  <style>
+    :root{
+      --bg:#f5f6f8;
+      --surface:#ffffff;
+      --surface-soft:#fafafa;
+      --text:#111111;
+      --muted:#666666;
+      --line:#dddddd;
+      --line-dark:#c9c9c9;
+      --accent:#c91f1f;
+      --accent-dark:#a71919;
+      --max:1240px;
+      --radius:18px;
+      --shadow:0 8px 30px rgba(0,0,0,.06);
+      --serif: Georgia, "Times New Roman", Times, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+              Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.7;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .container{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:40;
+    }
+    .topbar-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand-mark{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:var(--accent);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:.4px;
+      flex:0 0 auto;
+    }
+    .brand-text h1{
+      margin:0;
+      font-family:var(--serif);
+      font-size:24px;
+      line-height:1;
+      font-weight:700;
+    }
+    .brand-text p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:18px;
+    }
+    .nav a{
+      font-size:14px;
+      color:#333;
+      padding:4px 0;
+    }
+    .nav a:hover{color:var(--accent)}
+    .nav a.primary{
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .hero{
+      padding:34px 0 18px;
+    }
+    .hero-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:0;
+    }
+    .hero-copy{
+      padding:38px 36px 34px;
+      background:#fff;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--accent);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:28px;
+      height:2px;
+      background:var(--accent);
+      display:inline-block;
+    }
+    .hero-copy h2{
+      margin:0 0 14px;
+      font-family:var(--serif);
+      font-size:48px;
+      line-height:1.05;
+      font-weight:700;
+      letter-spacing:-.4px;
+    }
+    .hero-copy p{
+      margin:0;
+      color:#333;
+      font-size:16px;
+      max-width:88%;
+    }
+
+    .hero-panel{
+      background:#111;
+      color:#fff;
+      padding:34px 30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .hero-panel h3{
+      margin:0 0 14px;
+      font-size:13px;
+      letter-spacing:.9px;
+      text-transform:uppercase;
+      color:#d2d2d2;
+    }
+    .hero-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .hero-links a{
+      font-size:18px;
+      font-weight:700;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+    .hero-links a:hover{color:#f1d4d4}
+
+    .layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:24px;
+      padding:14px 0 40px;
+    }
+
+    .sidebar{
+      align-self:start;
+      position:sticky;
+      top:96px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .sidebar-head{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      background:#fcfcfc;
+      font-size:13px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      font-weight:700;
+    }
+    .sidebar a{
+      display:block;
+      padding:13px 20px;
+      border-bottom:1px solid #efefef;
+      font-size:14px;
+      color:#333;
+    }
+    .sidebar a:last-child{border-bottom:none}
+    .sidebar a:hover{
+      background:#fafafa;
+      color:var(--accent);
+    }
+
+    .content{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .section-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .section-head{
+      padding:22px 26px;
+      border-bottom:1px solid var(--line);
+      background:#fcfcfc;
+    }
+    .section-head h3{
+      margin:0;
+      font-family:var(--serif);
+      font-size:30px;
+      line-height:1.15;
+      font-weight:700;
+    }
+    .section-body{
+      padding:24px 26px 28px;
+    }
+    .section-body p{
+      margin:0 0 14px;
+      color:#333;
+      font-size:15px;
+    }
+    .section-body p:last-child{margin-bottom:0}
+
+    .checklist{
+      margin:0;
+      padding-left:20px;
+      color:#333;
+      font-size:15px;
+    }
+    .checklist li+li{margin-top:10px}
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:10px;
+    }
+    .mini-box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px 18px 16px;
+      background:var(--surface-soft);
+    }
+    .mini-box h4{
+      margin:0 0 10px;
+      font-family:var(--serif);
+      font-size:22px;
+      line-height:1.2;
+      font-weight:700;
+    }
+    .mini-box p{
+      margin:0;
+      color:#444;
+      font-size:14px;
+    }
+
+    .policy-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+      font-size:14px;
+    }
+    .policy-table th,
+    .policy-table td{
+      border:1px solid var(--line);
+      padding:12px 14px;
+      vertical-align:top;
+      text-align:left;
+    }
+    .policy-table th{
+      background:#fafafa;
+      font-weight:700;
+    }
+
+    .callout{
+      margin-top:14px;
+      border:1px solid #e8d2d2;
+      background:#fff8f8;
+      border-radius:16px;
+      padding:15px 16px;
+      color:#5a2b2b;
+      font-size:14px;
+    }
+
+    .footer{
+      background:#fff;
+      border-top:1px solid var(--line);
+      margin-top:18px;
+    }
+    .footer-inner{
+      padding:24px 0 34px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media (max-width:1020px){
+      .hero-inner{grid-template-columns:1fr}
+      .layout{grid-template-columns:1fr}
+      .sidebar{
+        position:static;
+      }
+      .hero-copy p{max-width:100%}
+    }
+
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .topbar-inner{
+        align-items:flex-start;
+        padding:14px 0;
+      }
+      .nav{
+        gap:12px;
+        justify-content:flex-start;
+      }
+      .hero-copy{
+        padding:28px 22px;
+      }
+      .hero-panel{
+        padding:24px 22px;
+      }
+      .hero-copy h2{
+        font-size:36px;
+      }
+      .section-head{
+        padding:18px 20px;
+      }
+      .section-head h3{
+        font-size:26px;
+      }
+      .section-body{
+        padding:20px;
+      }
+      .mini-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">H</div>
+        <div class="brand-text">
+          <h1>Hature</h1>
+          <p>Journal of Hachimi Studies</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#sections">Sections</a>
+        <a href="../index.html#latest">Latest</a>
+        <a href="../index.html#submit">Submission</a>
+        <a href="author-guidelines.html" class="primary">For Authors</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="eyebrow">For Authors</div>
+            <h2>Author guidelines for Hature</h2>
+            <p>
+              The sections below provide essential information for authors and contributors wishing to submit to Hature.
+              These instructions apply to research articles, reviews, perspectives and general studies essays, and are intended to keep the submission process clear, lightweight and internationally accessible.
+            </p>
+          </div>
+          <aside class="hero-panel">
+            <h3>Quick links</h3>
+            <div class="hero-links">
+              <a href="#aims">Aims and scope</a>
+              <a href="#format">Formatting guide</a>
+              <a href="#submission">Initial submission</a>
+              <a href="#supplementary">Supplementary information</a>
+              <a href="#policies">Publishing policies</a>
+              <a href="../index.html#submit">Submit manuscript</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-head">On this page</div>
+        <a href="#aims">Aims and scope</a>
+        <a href="#types">Article types</a>
+        <a href="#criteria">Editorial criteria and process</a>
+        <a href="#format">Formatting guide</a>
+        <a href="#languages">Language policy</a>
+        <a href="#submission">Initial submission</a>
+        <a href="#final">Final submission</a>
+        <a href="#supplementary">Supplementary information</a>
+        <a href="#ethics">Ethics and AI policy</a>
+        <a href="#fees">Fees and access</a>
+        <a href="#forms">Forms and declarations</a>
+      </aside>
+
+      <div class="content">
+
+        <section class="section-card" id="aims">
+          <div class="section-head">
+            <h3>Aims and scope</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              Hature is a mock academic journal platform centered on Hachimi studies while remaining open to broader interdisciplinary discussion. The journal welcomes original, clearly argued and well-structured submissions across four core sections.
+            </p>
+            <div class="mini-grid">
+              <div class="mini-box">
+                <h4>哈基米信息学</h4>
+                <p>Research on the underlying code, logical structure, symbolic systems and formal modelling of Hachimi.</p>
+              </div>
+              <div class="mini-box">
+                <h4>哈基米行为学</h4>
+                <p>Research on observable Hachimi behaviour, reactions, interaction patterns and context-dependent performance.</p>
+              </div>
+              <div class="mini-box">
+                <h4>基米社会学</h4>
+                <p>Research on social relations, collective structures, networks and interactional meanings related to Hachimi worlds.</p>
+              </div>
+              <div class="mini-box">
+                <h4>哈基米综合学</h4>
+                <p>Open interdisciplinary work related or unrelated to Hachimi, provided that the argument is clear, substantial and coherent.</p>
+              </div>
+            </div>
+            <div class="callout">
+              Hature values clarity, originality, structure and readability more than adherence to a single disciplinary style.
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="types">
+          <div class="section-head">
+            <h3>Article types</h3>
+          </div>
+          <div class="section-body">
+            <table class="policy-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Typical length</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Research Article</td>
+                  <td>3,000–8,000 words</td>
+                  <td>Full original study with a clear question, method or analytical structure, results or argument, and conclusion.</td>
+                </tr>
+                <tr>
+                  <td>Review</td>
+                  <td>4,000–10,000 words</td>
+                  <td>Synthesis of an existing topic, concept or field relevant to Hature’s sections.</td>
+                </tr>
+                <tr>
+                  <td>Perspective</td>
+                  <td>1,500–4,000 words</td>
+                  <td>Argument-driven piece presenting a position, conceptual intervention or methodological viewpoint.</td>
+                </tr>
+                <tr>
+                  <td>Methods / Framework</td>
+                  <td>2,000–6,000 words</td>
+                  <td>Description of a framework, model, annotation scheme, analytical pipeline or editorial method.</td>
+                </tr>
+                <tr>
+                  <td>General Studies Essay</td>
+                  <td>1,500–6,000 words</td>
+                  <td>Cross-disciplinary or boundary-expanding work suitable for Hachimi General Studies.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section-card" id="criteria">
+          <div class="section-head">
+            <h3>Editorial criteria and process</h3>
+          </div>
+          <div class="section-body">
+            <p>Submissions will normally be assessed on the basis of the following criteria:</p>
+            <ul class="checklist">
+              <li>Clear fit with one of Hature’s sections or a persuasive justification for cross-sectional relevance.</li>
+              <li>Originality of question, argument, model, method or interpretation.</li>
+              <li>Logical structure, internal consistency and readability.</li>
+              <li>Appropriate use of evidence, examples, references or formal reasoning.</li>
+              <li>Reasonable presentation quality and respect for journal policies.</li>
+            </ul>
+            <p style="margin-top:14px;">
+              The editorial process typically includes initial screening, format check, editorial assessment and, where appropriate, external review or internal commentary. Hature reserves the right to return submissions for technical revision before editorial consideration.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="format">
+          <div class="section-head">
+            <h3>Formatting guide</h3>
+          </div>
+          <div class="section-body">
+            <p>To keep submissions simple and accessible, Hature accepts a flexible but standard manuscript structure.</p>
+            <table class="policy-table">
+              <thead>
+                <tr>
+                  <th>Required element</th>
+                  <th>Guideline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Title</td>
+                  <td>Concise and informative. Preferably under 25 words.</td>
+                </tr>
+                <tr>
+                  <td>Author information</td>
+                  <td>Full names, affiliations and corresponding author email.</td>
+                </tr>
+                <tr>
+                  <td>Abstract</td>
+                  <td>150–300 words, summarizing the question, approach and main conclusion.</td>
+                </tr>
+                <tr>
+                  <td>Keywords</td>
+                  <td>3–8 keywords.</td>
+                </tr>
+                <tr>
+                  <td>Main text</td>
+                  <td>Recommended headings: Introduction, Main analysis / Results, Discussion, Conclusion.</td>
+                </tr>
+                <tr>
+                  <td>References</td>
+                  <td>Any consistent academic style is acceptable at initial submission. Consistency matters more than format preference.</td>
+                </tr>
+                <tr>
+                  <td>Figures and tables</td>
+                  <td>Provide numbered titles and brief legends. Cite each in the text.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="callout">
+              At initial submission, Hature does not require strict adherence to a single citation style. Clean structure and consistency are sufficient.
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="languages">
+          <div class="section-head">
+            <h3>Language policy</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              Hature accepts submissions in multiple languages. English is recommended for widest accessibility, but manuscripts in Chinese and other languages may also be considered if the writing is clear and appropriately structured.
+            </p>
+            <p>
+              Authors may submit bilingual titles, abstracts or keywords where useful. If a manuscript is not in English, we strongly recommend including an English title and abstract whenever possible.
+            </p>
+            <p>
+              Language polishing, including AI-assisted language refinement, is permitted, provided that the scientific or intellectual responsibility remains entirely with the authors.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="submission">
+          <div class="section-head">
+            <h3>Initial submission</h3>
+          </div>
+          <div class="section-body">
+            <p>At initial submission, authors should provide the following:</p>
+            <ul class="checklist">
+              <li>Main manuscript file in PDF, DOCX or compatible format.</li>
+              <li>Title, author information, abstract and keywords.</li>
+              <li>Section selection corresponding to the journal’s four core categories.</li>
+              <li>Any figures, tables or supplementary files that are directly relevant to the submission.</li>
+              <li>A brief data and code availability statement where applicable.</li>
+            </ul>
+            <p style="margin-top:14px;">
+              Hature encourages authors to prioritize clarity and completeness over strict stylistic polish at the first submission stage.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="final">
+          <div class="section-head">
+            <h3>Final submission</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              If a manuscript is accepted or invited for revision, authors may be asked to provide a clean final version, editable source files, higher-quality figures and updated metadata.
+            </p>
+            <p>
+              Final files should include all corrections requested by the editorial team, consistent references, properly numbered figures and tables, and any final declarations required for publication.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="supplementary">
+          <div class="section-head">
+            <h3>Supplementary information</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              Supplementary information may include appendices, additional figures, datasets, code files, extended methods, annotation materials or supporting documentation that are directly relevant to the submission.
+            </p>
+            <ul class="checklist">
+              <li>Accepted formats may include PDF, ZIP, TXT, CSV, XLSX, PNG, JPG and common code or text formats.</li>
+              <li>Each supplementary item should be clearly named and briefly described.</li>
+              <li>Supplementary materials should be cited in the main text where relevant.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section-card" id="ethics">
+          <div class="section-head">
+            <h3>Ethics, originality and AI use</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              Submissions to Hature must be original, appropriately attributed and not misleading in authorship or source. Authors are responsible for the accuracy of their text, data, claims, citations and representations.
+            </p>
+            <p>Use of AI tools is allowed under the following conditions:</p>
+            <ul class="checklist">
+              <li>AI-assisted language polishing, restructuring, translation and drafting support are permitted.</li>
+              <li>Authors remain fully responsible for all submitted content.</li>
+              <li>AI tools should not be listed as authors.</li>
+              <li>If AI was used in a substantial way for writing, image generation or data-assisted analysis, authors should disclose this in an acknowledgement or methods note where appropriate.</li>
+            </ul>
+            <p style="margin-top:14px;">
+              Hature does not prohibit AI polishing. It requires transparency, accountability and human responsibility.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="fees">
+          <div class="section-head">
+            <h3>Fees and access</h3>
+          </div>
+          <div class="section-body">
+            <p>
+              Hature currently does not charge submission fees, review fees or article processing charges. In particular, there are no page charges or mandatory publication fees at the present stage.
+            </p>
+            <p>
+              Authors should note that this policy may be updated in the future if the journal platform changes, but any such change would be clearly announced in advance.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" id="forms">
+          <div class="section-head">
+            <h3>Forms and declarations</h3>
+          </div>
+          <div class="section-body">
+            <p>Depending on the submission type, authors may be asked to provide the following declarations:</p>
+            <ul class="checklist">
+              <li>Corresponding author confirmation</li>
+              <li>Originality statement</li>
+              <li>Conflict of interest statement</li>
+              <li>Data availability statement</li>
+              <li>AI use disclosure, where relevant</li>
+            </ul>
+            <p style="margin-top:14px;">
+              At this stage, Hature keeps declarations lightweight and focused on transparency rather than administrative burden.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Hature Publishing · Journal of Hachimi Studies</div>
+      <div>For Authors · Editorial guidance page</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
