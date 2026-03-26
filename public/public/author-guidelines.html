@@ -85,6 +85,13 @@
       text-transform:uppercase;
       letter-spacing:.8px;
     }
+
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
     .nav{
       display:flex;
       flex-wrap:wrap;
@@ -100,6 +107,31 @@
     .nav a.primary{
       color:var(--accent);
       font-weight:700;
+    }
+
+    .lang-switch{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--line-dark);
+      border-radius:999px;
+      padding:4px;
+      background:#fff;
+    }
+    .lang-switch button{
+      border:none;
+      background:transparent;
+      color:#333;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .lang-switch button.active{
+      background:var(--accent);
+      color:#fff;
     }
 
     .hero{
@@ -336,9 +368,7 @@
     @media (max-width:1020px){
       .hero-inner{grid-template-columns:1fr}
       .layout{grid-template-columns:1fr}
-      .sidebar{
-        position:static;
-      }
+      .sidebar{position:static}
       .hero-copy p{max-width:100%}
     }
 
@@ -347,6 +377,10 @@
       .topbar-inner{
         align-items:flex-start;
         padding:14px 0;
+        flex-direction:column;
+      }
+      .nav-wrap{
+        align-items:flex-start;
       }
       .nav{
         gap:12px;
@@ -383,16 +417,24 @@
         <div class="brand-mark">H</div>
         <div class="brand-text">
           <h1>Hature</h1>
-          <p>Journal of Hachimi Studies</p>
+          <p data-i18n="brandSubtitle">Journal of Hachimi Studies</p>
         </div>
       </div>
-      <nav class="nav">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#sections">Sections</a>
-        <a href="../index.html#latest">Latest</a>
-        <a href="../index.html#submit">Submission</a>
-        <a href="author-guidelines.html" class="primary">For Authors</a>
-      </nav>
+
+      <div class="nav-wrap">
+        <nav class="nav">
+          <a href="../index.html" data-i18n="navHome">Home</a>
+          <a href="../index.html#sections" data-i18n="navSections">Sections</a>
+          <a href="../index.html#latest" data-i18n="navLatest">Latest</a>
+          <a href="../index.html#submit" data-i18n="navSubmission">Submission</a>
+          <a href="author-guidelines.html" class="primary" data-i18n="navAuthors">For Authors</a>
+        </nav>
+
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-zh" onclick="setLanguage('zh')">中文</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -401,22 +443,22 @@
       <div class="hero-card">
         <div class="hero-inner">
           <div class="hero-copy">
-            <div class="eyebrow">For Authors</div>
-            <h2>Author guidelines for Hature</h2>
-            <p>
+            <div class="eyebrow" data-i18n="heroEyebrow">For Authors</div>
+            <h2 data-i18n="heroTitle">Author guidelines for Hature</h2>
+            <p data-i18n="heroDesc">
               The sections below provide essential information for authors and contributors wishing to submit to Hature.
               These instructions apply to research articles, reviews, perspectives and general studies essays, and are intended to keep the submission process clear, lightweight and internationally accessible.
             </p>
           </div>
           <aside class="hero-panel">
-            <h3>Quick links</h3>
+            <h3 data-i18n="quickLinks">Quick links</h3>
             <div class="hero-links">
-              <a href="#aims">Aims and scope</a>
-              <a href="#format">Formatting guide</a>
-              <a href="#submission">Initial submission</a>
-              <a href="#supplementary">Supplementary information</a>
-              <a href="#policies">Publishing policies</a>
-              <a href="../index.html#submit">Submit manuscript</a>
+              <a href="#aims" data-i18n="linkAims">Aims and scope</a>
+              <a href="#format" data-i18n="linkFormat">Formatting guide</a>
+              <a href="#submission" data-i18n="linkSubmission">Initial submission</a>
+              <a href="#supplementary" data-i18n="linkSupplementary">Supplementary information</a>
+              <a href="#fees" data-i18n="linkPolicies">Publishing policies</a>
+              <a href="../index.html#submit" data-i18n="linkSubmit">Submit manuscript</a>
             </div>
           </aside>
         </div>
@@ -425,49 +467,49 @@
 
     <section class="layout">
       <aside class="sidebar">
-        <div class="sidebar-head">On this page</div>
-        <a href="#aims">Aims and scope</a>
-        <a href="#types">Article types</a>
-        <a href="#criteria">Editorial criteria and process</a>
-        <a href="#format">Formatting guide</a>
-        <a href="#languages">Language policy</a>
-        <a href="#submission">Initial submission</a>
-        <a href="#final">Final submission</a>
-        <a href="#supplementary">Supplementary information</a>
-        <a href="#ethics">Ethics and AI policy</a>
-        <a href="#fees">Fees and access</a>
-        <a href="#forms">Forms and declarations</a>
+        <div class="sidebar-head" data-i18n="sidebarHead">On this page</div>
+        <a href="#aims" data-i18n="sideAims">Aims and scope</a>
+        <a href="#types" data-i18n="sideTypes">Article types</a>
+        <a href="#criteria" data-i18n="sideCriteria">Editorial criteria and process</a>
+        <a href="#format" data-i18n="sideFormat">Formatting guide</a>
+        <a href="#languages" data-i18n="sideLanguages">Language policy</a>
+        <a href="#submission" data-i18n="sideSubmission">Initial submission</a>
+        <a href="#final" data-i18n="sideFinal">Final submission</a>
+        <a href="#supplementary" data-i18n="sideSupplementary">Supplementary information</a>
+        <a href="#ethics" data-i18n="sideEthics">Ethics and AI policy</a>
+        <a href="#fees" data-i18n="sideFees">Fees and access</a>
+        <a href="#forms" data-i18n="sideForms">Forms and declarations</a>
       </aside>
 
       <div class="content">
 
         <section class="section-card" id="aims">
           <div class="section-head">
-            <h3>Aims and scope</h3>
+            <h3 data-i18n="aimsTitle">Aims and scope</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="aimsDesc">
               Hature is a mock academic journal platform centered on Hachimi studies while remaining open to broader interdisciplinary discussion. The journal welcomes original, clearly argued and well-structured submissions across four core sections.
             </p>
             <div class="mini-grid">
               <div class="mini-box">
-                <h4>哈基米信息学</h4>
-                <p>Research on the underlying code, logical structure, symbolic systems and formal modelling of Hachimi.</p>
+                <h4 data-i18n="sec1Title">哈基米信息学</h4>
+                <p data-i18n="sec1Desc">Research on the underlying code, logical structure, symbolic systems and formal modelling of Hachimi.</p>
               </div>
               <div class="mini-box">
-                <h4>哈基米行为学</h4>
-                <p>Research on observable Hachimi behaviour, reactions, interaction patterns and context-dependent performance.</p>
+                <h4 data-i18n="sec2Title">哈基米行为学</h4>
+                <p data-i18n="sec2Desc">Research on observable Hachimi behaviour, reactions, interaction patterns and context-dependent performance.</p>
               </div>
               <div class="mini-box">
-                <h4>基米社会学</h4>
-                <p>Research on social relations, collective structures, networks and interactional meanings related to Hachimi worlds.</p>
+                <h4 data-i18n="sec3Title">基米社会学</h4>
+                <p data-i18n="sec3Desc">Research on social relations, collective structures, networks and interactional meanings related to Hachimi worlds.</p>
               </div>
               <div class="mini-box">
-                <h4>哈基米综合学</h4>
-                <p>Open interdisciplinary work related or unrelated to Hachimi, provided that the argument is clear, substantial and coherent.</p>
+                <h4 data-i18n="sec4Title">哈基米综合学</h4>
+                <p data-i18n="sec4Desc">Open interdisciplinary work related or unrelated to Hachimi, provided that the argument is clear, substantial and coherent.</p>
               </div>
             </div>
-            <div class="callout">
+            <div class="callout" data-i18n="aimsCallout">
               Hature values clarity, originality, structure and readability more than adherence to a single disciplinary style.
             </div>
           </div>
@@ -475,42 +517,42 @@
 
         <section class="section-card" id="types">
           <div class="section-head">
-            <h3>Article types</h3>
+            <h3 data-i18n="typesTitle">Article types</h3>
           </div>
           <div class="section-body">
             <table class="policy-table">
               <thead>
                 <tr>
-                  <th>Type</th>
-                  <th>Typical length</th>
-                  <th>Description</th>
+                  <th data-i18n="thType">Type</th>
+                  <th data-i18n="thLength">Typical length</th>
+                  <th data-i18n="thDesc">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Research Article</td>
-                  <td>3,000–8,000 words</td>
-                  <td>Full original study with a clear question, method or analytical structure, results or argument, and conclusion.</td>
+                  <td data-i18n="type1Name">Research Article</td>
+                  <td data-i18n="type1Len">3,000–8,000 words</td>
+                  <td data-i18n="type1Desc">Full original study with a clear question, method or analytical structure, results or argument, and conclusion.</td>
                 </tr>
                 <tr>
-                  <td>Review</td>
-                  <td>4,000–10,000 words</td>
-                  <td>Synthesis of an existing topic, concept or field relevant to Hature’s sections.</td>
+                  <td data-i18n="type2Name">Review</td>
+                  <td data-i18n="type2Len">4,000–10,000 words</td>
+                  <td data-i18n="type2Desc">Synthesis of an existing topic, concept or field relevant to Hature’s sections.</td>
                 </tr>
                 <tr>
-                  <td>Perspective</td>
-                  <td>1,500–4,000 words</td>
-                  <td>Argument-driven piece presenting a position, conceptual intervention or methodological viewpoint.</td>
+                  <td data-i18n="type3Name">Perspective</td>
+                  <td data-i18n="type3Len">1,500–4,000 words</td>
+                  <td data-i18n="type3Desc">Argument-driven piece presenting a position, conceptual intervention or methodological viewpoint.</td>
                 </tr>
                 <tr>
-                  <td>Methods / Framework</td>
-                  <td>2,000–6,000 words</td>
-                  <td>Description of a framework, model, annotation scheme, analytical pipeline or editorial method.</td>
+                  <td data-i18n="type4Name">Methods / Framework</td>
+                  <td data-i18n="type4Len">2,000–6,000 words</td>
+                  <td data-i18n="type4Desc">Description of a framework, model, annotation scheme, analytical pipeline or editorial method.</td>
                 </tr>
                 <tr>
-                  <td>General Studies Essay</td>
-                  <td>1,500–6,000 words</td>
-                  <td>Cross-disciplinary or boundary-expanding work suitable for Hachimi General Studies.</td>
+                  <td data-i18n="type5Name">General Studies Essay</td>
+                  <td data-i18n="type5Len">1,500–6,000 words</td>
+                  <td data-i18n="type5Desc">Cross-disciplinary or boundary-expanding work suitable for Hachimi General Studies.</td>
                 </tr>
               </tbody>
             </table>
@@ -519,18 +561,18 @@
 
         <section class="section-card" id="criteria">
           <div class="section-head">
-            <h3>Editorial criteria and process</h3>
+            <h3 data-i18n="criteriaTitle">Editorial criteria and process</h3>
           </div>
           <div class="section-body">
-            <p>Submissions will normally be assessed on the basis of the following criteria:</p>
+            <p data-i18n="criteriaIntro">Submissions will normally be assessed on the basis of the following criteria:</p>
             <ul class="checklist">
-              <li>Clear fit with one of Hature’s sections or a persuasive justification for cross-sectional relevance.</li>
-              <li>Originality of question, argument, model, method or interpretation.</li>
-              <li>Logical structure, internal consistency and readability.</li>
-              <li>Appropriate use of evidence, examples, references or formal reasoning.</li>
-              <li>Reasonable presentation quality and respect for journal policies.</li>
+              <li data-i18n="criteria1">Clear fit with one of Hature’s sections or a persuasive justification for cross-sectional relevance.</li>
+              <li data-i18n="criteria2">Originality of question, argument, model, method or interpretation.</li>
+              <li data-i18n="criteria3">Logical structure, internal consistency and readability.</li>
+              <li data-i18n="criteria4">Appropriate use of evidence, examples, references or formal reasoning.</li>
+              <li data-i18n="criteria5">Reasonable presentation quality and respect for journal policies.</li>
             </ul>
-            <p style="margin-top:14px;">
+            <p style="margin-top:14px;" data-i18n="criteriaTail">
               The editorial process typically includes initial screening, format check, editorial assessment and, where appropriate, external review or internal commentary. Hature reserves the right to return submissions for technical revision before editorial consideration.
             </p>
           </div>
@@ -538,49 +580,49 @@
 
         <section class="section-card" id="format">
           <div class="section-head">
-            <h3>Formatting guide</h3>
+            <h3 data-i18n="formatTitle">Formatting guide</h3>
           </div>
           <div class="section-body">
-            <p>To keep submissions simple and accessible, Hature accepts a flexible but standard manuscript structure.</p>
+            <p data-i18n="formatIntro">To keep submissions simple and accessible, Hature accepts a flexible but standard manuscript structure.</p>
             <table class="policy-table">
               <thead>
                 <tr>
-                  <th>Required element</th>
-                  <th>Guideline</th>
+                  <th data-i18n="formatTh1">Required element</th>
+                  <th data-i18n="formatTh2">Guideline</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Title</td>
-                  <td>Concise and informative. Preferably under 25 words.</td>
+                  <td data-i18n="format1Name">Title</td>
+                  <td data-i18n="format1Desc">Concise and informative. Preferably under 25 words.</td>
                 </tr>
                 <tr>
-                  <td>Author information</td>
-                  <td>Full names, affiliations and corresponding author email.</td>
+                  <td data-i18n="format2Name">Author information</td>
+                  <td data-i18n="format2Desc">Full names, affiliations and corresponding author email.</td>
                 </tr>
                 <tr>
-                  <td>Abstract</td>
-                  <td>150–300 words, summarizing the question, approach and main conclusion.</td>
+                  <td data-i18n="format3Name">Abstract</td>
+                  <td data-i18n="format3Desc">150–300 words, summarizing the question, approach and main conclusion.</td>
                 </tr>
                 <tr>
-                  <td>Keywords</td>
-                  <td>3–8 keywords.</td>
+                  <td data-i18n="format4Name">Keywords</td>
+                  <td data-i18n="format4Desc">3–8 keywords.</td>
                 </tr>
                 <tr>
-                  <td>Main text</td>
-                  <td>Recommended headings: Introduction, Main analysis / Results, Discussion, Conclusion.</td>
+                  <td data-i18n="format5Name">Main text</td>
+                  <td data-i18n="format5Desc">Recommended headings: Introduction, Main analysis / Results, Discussion, Conclusion.</td>
                 </tr>
                 <tr>
-                  <td>References</td>
-                  <td>Any consistent academic style is acceptable at initial submission. Consistency matters more than format preference.</td>
+                  <td data-i18n="format6Name">References</td>
+                  <td data-i18n="format6Desc">Any consistent academic style is acceptable at initial submission. Consistency matters more than format preference.</td>
                 </tr>
                 <tr>
-                  <td>Figures and tables</td>
-                  <td>Provide numbered titles and brief legends. Cite each in the text.</td>
+                  <td data-i18n="format7Name">Figures and tables</td>
+                  <td data-i18n="format7Desc">Provide numbered titles and brief legends. Cite each in the text.</td>
                 </tr>
               </tbody>
             </table>
-            <div class="callout">
+            <div class="callout" data-i18n="formatCallout">
               At initial submission, Hature does not require strict adherence to a single citation style. Clean structure and consistency are sufficient.
             </div>
           </div>
@@ -588,16 +630,16 @@
 
         <section class="section-card" id="languages">
           <div class="section-head">
-            <h3>Language policy</h3>
+            <h3 data-i18n="languagesTitle">Language policy</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="languages1">
               Hature accepts submissions in multiple languages. English is recommended for widest accessibility, but manuscripts in Chinese and other languages may also be considered if the writing is clear and appropriately structured.
             </p>
-            <p>
+            <p data-i18n="languages2">
               Authors may submit bilingual titles, abstracts or keywords where useful. If a manuscript is not in English, we strongly recommend including an English title and abstract whenever possible.
             </p>
-            <p>
+            <p data-i18n="languages3">
               Language polishing, including AI-assisted language refinement, is permitted, provided that the scientific or intellectual responsibility remains entirely with the authors.
             </p>
           </div>
@@ -605,18 +647,18 @@
 
         <section class="section-card" id="submission">
           <div class="section-head">
-            <h3>Initial submission</h3>
+            <h3 data-i18n="submissionTitle">Initial submission</h3>
           </div>
           <div class="section-body">
-            <p>At initial submission, authors should provide the following:</p>
+            <p data-i18n="submissionIntro">At initial submission, authors should provide the following:</p>
             <ul class="checklist">
-              <li>Main manuscript file in PDF, DOCX or compatible format.</li>
-              <li>Title, author information, abstract and keywords.</li>
-              <li>Section selection corresponding to the journal’s four core categories.</li>
-              <li>Any figures, tables or supplementary files that are directly relevant to the submission.</li>
-              <li>A brief data and code availability statement where applicable.</li>
+              <li data-i18n="submission1">Main manuscript file in PDF, DOCX or compatible format.</li>
+              <li data-i18n="submission2">Title, author information, abstract and keywords.</li>
+              <li data-i18n="submission3">Section selection corresponding to the journal’s four core categories.</li>
+              <li data-i18n="submission4">Any figures, tables or supplementary files that are directly relevant to the submission.</li>
+              <li data-i18n="submission5">A brief data and code availability statement where applicable.</li>
             </ul>
-            <p style="margin-top:14px;">
+            <p style="margin-top:14px;" data-i18n="submissionTail">
               Hature encourages authors to prioritize clarity and completeness over strict stylistic polish at the first submission stage.
             </p>
           </div>
@@ -624,13 +666,13 @@
 
         <section class="section-card" id="final">
           <div class="section-head">
-            <h3>Final submission</h3>
+            <h3 data-i18n="finalTitle">Final submission</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="final1">
               If a manuscript is accepted or invited for revision, authors may be asked to provide a clean final version, editable source files, higher-quality figures and updated metadata.
             </p>
-            <p>
+            <p data-i18n="final2">
               Final files should include all corrections requested by the editorial team, consistent references, properly numbered figures and tables, and any final declarations required for publication.
             </p>
           </div>
@@ -638,36 +680,36 @@
 
         <section class="section-card" id="supplementary">
           <div class="section-head">
-            <h3>Supplementary information</h3>
+            <h3 data-i18n="suppTitle">Supplementary information</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="supp1">
               Supplementary information may include appendices, additional figures, datasets, code files, extended methods, annotation materials or supporting documentation that are directly relevant to the submission.
             </p>
             <ul class="checklist">
-              <li>Accepted formats may include PDF, ZIP, TXT, CSV, XLSX, PNG, JPG and common code or text formats.</li>
-              <li>Each supplementary item should be clearly named and briefly described.</li>
-              <li>Supplementary materials should be cited in the main text where relevant.</li>
+              <li data-i18n="supp2">Accepted formats may include PDF, ZIP, TXT, CSV, XLSX, PNG, JPG and common code or text formats.</li>
+              <li data-i18n="supp3">Each supplementary item should be clearly named and briefly described.</li>
+              <li data-i18n="supp4">Supplementary materials should be cited in the main text where relevant.</li>
             </ul>
           </div>
         </section>
 
         <section class="section-card" id="ethics">
           <div class="section-head">
-            <h3>Ethics, originality and AI use</h3>
+            <h3 data-i18n="ethicsTitle">Ethics, originality and AI use</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="ethics1">
               Submissions to Hature must be original, appropriately attributed and not misleading in authorship or source. Authors are responsible for the accuracy of their text, data, claims, citations and representations.
             </p>
-            <p>Use of AI tools is allowed under the following conditions:</p>
+            <p data-i18n="ethics2">Use of AI tools is allowed under the following conditions:</p>
             <ul class="checklist">
-              <li>AI-assisted language polishing, restructuring, translation and drafting support are permitted.</li>
-              <li>Authors remain fully responsible for all submitted content.</li>
-              <li>AI tools should not be listed as authors.</li>
-              <li>If AI was used in a substantial way for writing, image generation or data-assisted analysis, authors should disclose this in an acknowledgement or methods note where appropriate.</li>
+              <li data-i18n="ethics3">AI-assisted language polishing, restructuring, translation and drafting support are permitted.</li>
+              <li data-i18n="ethics4">Authors remain fully responsible for all submitted content.</li>
+              <li data-i18n="ethics5">AI tools should not be listed as authors.</li>
+              <li data-i18n="ethics6">If AI was used in a substantial way for writing, image generation or data-assisted analysis, authors should disclose this in an acknowledgement or methods note where appropriate.</li>
             </ul>
-            <p style="margin-top:14px;">
+            <p style="margin-top:14px;" data-i18n="ethics7">
               Hature does not prohibit AI polishing. It requires transparency, accountability and human responsibility.
             </p>
           </div>
@@ -675,13 +717,13 @@
 
         <section class="section-card" id="fees">
           <div class="section-head">
-            <h3>Fees and access</h3>
+            <h3 data-i18n="feesTitle">Fees and access</h3>
           </div>
           <div class="section-body">
-            <p>
+            <p data-i18n="fees1">
               Hature currently does not charge submission fees, review fees or article processing charges. In particular, there are no page charges or mandatory publication fees at the present stage.
             </p>
-            <p>
+            <p data-i18n="fees2">
               Authors should note that this policy may be updated in the future if the journal platform changes, but any such change would be clearly announced in advance.
             </p>
           </div>
@@ -689,18 +731,18 @@
 
         <section class="section-card" id="forms">
           <div class="section-head">
-            <h3>Forms and declarations</h3>
+            <h3 data-i18n="formsTitle">Forms and declarations</h3>
           </div>
           <div class="section-body">
-            <p>Depending on the submission type, authors may be asked to provide the following declarations:</p>
+            <p data-i18n="forms1">Depending on the submission type, authors may be asked to provide the following declarations:</p>
             <ul class="checklist">
-              <li>Corresponding author confirmation</li>
-              <li>Originality statement</li>
-              <li>Conflict of interest statement</li>
-              <li>Data availability statement</li>
-              <li>AI use disclosure, where relevant</li>
+              <li data-i18n="forms2">Corresponding author confirmation</li>
+              <li data-i18n="forms3">Originality statement</li>
+              <li data-i18n="forms4">Conflict of interest statement</li>
+              <li data-i18n="forms5">Data availability statement</li>
+              <li data-i18n="forms6">AI use disclosure, where relevant</li>
             </ul>
-            <p style="margin-top:14px;">
+            <p style="margin-top:14px;" data-i18n="forms7">
               At this stage, Hature keeps declarations lightweight and focused on transparency rather than administrative burden.
             </p>
           </div>
@@ -712,13 +754,290 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Hature Publishing · Journal of Hachimi Studies</div>
-      <div>For Authors · Editorial guidance page</div>
+      <div data-i18n="footerLeft">© <span id="year"></span> Hature Publishing · Journal of Hachimi Studies</div>
+      <div data-i18n="footerRight">For Authors · Editorial guidance page</div>
     </div>
   </footer>
 
   <script>
+    const translations = {
+      en: {
+        brandSubtitle: "Journal of Hachimi Studies",
+        navHome: "Home",
+        navSections: "Sections",
+        navLatest: "Latest",
+        navSubmission: "Submission",
+        navAuthors: "For Authors",
+        heroEyebrow: "For Authors",
+        heroTitle: "Author guidelines for Hature",
+        heroDesc: "The sections below provide essential information for authors and contributors wishing to submit to Hature. These instructions apply to research articles, reviews, perspectives and general studies essays, and are intended to keep the submission process clear, lightweight and internationally accessible.",
+        quickLinks: "Quick links",
+        linkAims: "Aims and scope",
+        linkFormat: "Formatting guide",
+        linkSubmission: "Initial submission",
+        linkSupplementary: "Supplementary information",
+        linkPolicies: "Publishing policies",
+        linkSubmit: "Submit manuscript",
+        sidebarHead: "On this page",
+        sideAims: "Aims and scope",
+        sideTypes: "Article types",
+        sideCriteria: "Editorial criteria and process",
+        sideFormat: "Formatting guide",
+        sideLanguages: "Language policy",
+        sideSubmission: "Initial submission",
+        sideFinal: "Final submission",
+        sideSupplementary: "Supplementary information",
+        sideEthics: "Ethics and AI policy",
+        sideFees: "Fees and access",
+        sideForms: "Forms and declarations",
+        aimsTitle: "Aims and scope",
+        aimsDesc: "Hature is a mock academic journal platform centered on Hachimi studies while remaining open to broader interdisciplinary discussion. The journal welcomes original, clearly argued and well-structured submissions across four core sections.",
+        sec1Title: "Hachimi Informatics",
+        sec1Desc: "Research on the underlying code, logical structure, symbolic systems and formal modelling of Hachimi.",
+        sec2Title: "Hachimi Behaviour",
+        sec2Desc: "Research on observable Hachimi behaviour, reactions, interaction patterns and context-dependent performance.",
+        sec3Title: "Jimi Sociology",
+        sec3Desc: "Research on social relations, collective structures, networks and interactional meanings related to Hachimi worlds.",
+        sec4Title: "Hachimi General Studies",
+        sec4Desc: "Open interdisciplinary work related or unrelated to Hachimi, provided that the argument is clear, substantial and coherent.",
+        aimsCallout: "Hature values clarity, originality, structure and readability more than adherence to a single disciplinary style.",
+        typesTitle: "Article types",
+        thType: "Type",
+        thLength: "Typical length",
+        thDesc: "Description",
+        type1Name: "Research Article",
+        type1Len: "3,000–8,000 words",
+        type1Desc: "Full original study with a clear question, method or analytical structure, results or argument, and conclusion.",
+        type2Name: "Review",
+        type2Len: "4,000–10,000 words",
+        type2Desc: "Synthesis of an existing topic, concept or field relevant to Hature’s sections.",
+        type3Name: "Perspective",
+        type3Len: "1,500–4,000 words",
+        type3Desc: "Argument-driven piece presenting a position, conceptual intervention or methodological viewpoint.",
+        type4Name: "Methods / Framework",
+        type4Len: "2,000–6,000 words",
+        type4Desc: "Description of a framework, model, annotation scheme, analytical pipeline or editorial method.",
+        type5Name: "General Studies Essay",
+        type5Len: "1,500–6,000 words",
+        type5Desc: "Cross-disciplinary or boundary-expanding work suitable for Hachimi General Studies.",
+        criteriaTitle: "Editorial criteria and process",
+        criteriaIntro: "Submissions will normally be assessed on the basis of the following criteria:",
+        criteria1: "Clear fit with one of Hature’s sections or a persuasive justification for cross-sectional relevance.",
+        criteria2: "Originality of question, argument, model, method or interpretation.",
+        criteria3: "Logical structure, internal consistency and readability.",
+        criteria4: "Appropriate use of evidence, examples, references or formal reasoning.",
+        criteria5: "Reasonable presentation quality and respect for journal policies.",
+        criteriaTail: "The editorial process typically includes initial screening, format check, editorial assessment and, where appropriate, external review or internal commentary. Hature reserves the right to return submissions for technical revision before editorial consideration.",
+        formatTitle: "Formatting guide",
+        formatIntro: "To keep submissions simple and accessible, Hature accepts a flexible but standard manuscript structure.",
+        formatTh1: "Required element",
+        formatTh2: "Guideline",
+        format1Name: "Title",
+        format1Desc: "Concise and informative. Preferably under 25 words.",
+        format2Name: "Author information",
+        format2Desc: "Full names, affiliations and corresponding author email.",
+        format3Name: "Abstract",
+        format3Desc: "150–300 words, summarizing the question, approach and main conclusion.",
+        format4Name: "Keywords",
+        format4Desc: "3–8 keywords.",
+        format5Name: "Main text",
+        format5Desc: "Recommended headings: Introduction, Main analysis / Results, Discussion, Conclusion.",
+        format6Name: "References",
+        format6Desc: "Any consistent academic style is acceptable at initial submission. Consistency matters more than format preference.",
+        format7Name: "Figures and tables",
+        format7Desc: "Provide numbered titles and brief legends. Cite each in the text.",
+        formatCallout: "At initial submission, Hature does not require strict adherence to a single citation style. Clean structure and consistency are sufficient.",
+        languagesTitle: "Language policy",
+        languages1: "Hature accepts submissions in multiple languages. English is recommended for widest accessibility, but manuscripts in Chinese and other languages may also be considered if the writing is clear and appropriately structured.",
+        languages2: "Authors may submit bilingual titles, abstracts or keywords where useful. If a manuscript is not in English, we strongly recommend including an English title and abstract whenever possible.",
+        languages3: "Language polishing, including AI-assisted language refinement, is permitted, provided that the scientific or intellectual responsibility remains entirely with the authors.",
+        submissionTitle: "Initial submission",
+        submissionIntro: "At initial submission, authors should provide the following:",
+        submission1: "Main manuscript file in PDF, DOCX or compatible format.",
+        submission2: "Title, author information, abstract and keywords.",
+        submission3: "Section selection corresponding to the journal’s four core categories.",
+        submission4: "Any figures, tables or supplementary files that are directly relevant to the submission.",
+        submission5: "A brief data and code availability statement where applicable.",
+        submissionTail: "Hature encourages authors to prioritize clarity and completeness over strict stylistic polish at the first submission stage.",
+        finalTitle: "Final submission",
+        final1: "If a manuscript is accepted or invited for revision, authors may be asked to provide a clean final version, editable source files, higher-quality figures and updated metadata.",
+        final2: "Final files should include all corrections requested by the editorial team, consistent references, properly numbered figures and tables, and any final declarations required for publication.",
+        suppTitle: "Supplementary information",
+        supp1: "Supplementary information may include appendices, additional figures, datasets, code files, extended methods, annotation materials or supporting documentation that are directly relevant to the submission.",
+        supp2: "Accepted formats may include PDF, ZIP, TXT, CSV, XLSX, PNG, JPG and common code or text formats.",
+        supp3: "Each supplementary item should be clearly named and briefly described.",
+        supp4: "Supplementary materials should be cited in the main text where relevant.",
+        ethicsTitle: "Ethics, originality and AI use",
+        ethics1: "Submissions to Hature must be original, appropriately attributed and not misleading in authorship or source. Authors are responsible for the accuracy of their text, data, claims, citations and representations.",
+        ethics2: "Use of AI tools is allowed under the following conditions:",
+        ethics3: "AI-assisted language polishing, restructuring, translation and drafting support are permitted.",
+        ethics4: "Authors remain fully responsible for all submitted content.",
+        ethics5: "AI tools should not be listed as authors.",
+        ethics6: "If AI was used in a substantial way for writing, image generation or data-assisted analysis, authors should disclose this in an acknowledgement or methods note where appropriate.",
+        ethics7: "Hature does not prohibit AI polishing. It requires transparency, accountability and human responsibility.",
+        feesTitle: "Fees and access",
+        fees1: "Hature currently does not charge submission fees, review fees or article processing charges. In particular, there are no page charges or mandatory publication fees at the present stage.",
+        fees2: "Authors should note that this policy may be updated in the future if the journal platform changes, but any such change would be clearly announced in advance.",
+        formsTitle: "Forms and declarations",
+        forms1: "Depending on the submission type, authors may be asked to provide the following declarations:",
+        forms2: "Corresponding author confirmation",
+        forms3: "Originality statement",
+        forms4: "Conflict of interest statement",
+        forms5: "Data availability statement",
+        forms6: "AI use disclosure, where relevant",
+        forms7: "At this stage, Hature keeps declarations lightweight and focused on transparency rather than administrative burden.",
+        footerLeft: "© " + new Date().getFullYear() + " Hature Publishing · Journal of Hachimi Studies",
+        footerRight: "For Authors · Editorial guidance page"
+      },
+      zh: {
+        brandSubtitle: "哈基米研究期刊",
+        navHome: "首页",
+        navSections: "栏目",
+        navLatest: "最新内容",
+        navSubmission: "投稿",
+        navAuthors: "作者指南",
+        heroEyebrow: "作者指南",
+        heroTitle: "Hature 投稿须知",
+        heroDesc: "以下内容为计划投稿至 Hature 的作者与供稿者提供基本说明。本指南适用于研究论文、综述、观点文章与综合性论文，旨在使投稿流程保持清晰、简洁且具有国际可读性。",
+        quickLinks: "快速链接",
+        linkAims: "宗旨与范围",
+        linkFormat: "格式要求",
+        linkSubmission: "初次投稿",
+        linkSupplementary: "补充材料",
+        linkPolicies: "出版政策",
+        linkSubmit: "提交稿件",
+        sidebarHead: "本页目录",
+        sideAims: "宗旨与范围",
+        sideTypes: "稿件类型",
+        sideCriteria: "编辑标准与流程",
+        sideFormat: "格式要求",
+        sideLanguages: "语言政策",
+        sideSubmission: "初次投稿",
+        sideFinal: "最终提交",
+        sideSupplementary: "补充材料",
+        sideEthics: "伦理与 AI 政策",
+        sideFees: "费用与开放",
+        sideForms: "声明与表格",
+        aimsTitle: "宗旨与范围",
+        aimsDesc: "Hature 是一个以 Hachimi 研究为中心、同时保持跨学科开放性的模拟学术期刊平台。期刊欢迎在四个核心栏目中提交原创、论证清晰、结构完整的稿件。",
+        sec1Title: "哈基米信息学",
+        sec1Desc: "研究 Hachimi 的底层代码、逻辑结构、符号系统与形式化建模。",
+        sec2Title: "哈基米行为学",
+        sec2Desc: "研究 Hachimi 的可观察行为、反应模式、互动表现与情境依赖行为。",
+        sec3Title: "基米社会学",
+        sec3Desc: "研究与 Hachimi 世界相关的社会关系、集体结构、网络与互动意义。",
+        sec4Title: "哈基米综合学",
+        sec4Desc: "接收与 Hachimi 有关或无关的开放性跨学科研究，但要求论证清楚、内容充实、结构完整。",
+        aimsCallout: "Hature 更重视表达清晰、问题原创、结构完整和整体可读性，而不是要求作者严格套用单一学科写法。",
+        typesTitle: "稿件类型",
+        thType: "类型",
+        thLength: "建议篇幅",
+        thDesc: "说明",
+        type1Name: "研究论文",
+        type1Len: "3,000–8,000 字",
+        type1Desc: "完整原创研究，需有明确问题、方法或分析框架，以及结果、论证和结论。",
+        type2Name: "综述",
+        type2Len: "4,000–10,000 字",
+        type2Desc: "对某一主题、概念或领域进行系统整理与综合，且与 Hature 栏目相关。",
+        type3Name: "观点文章",
+        type3Len: "1,500–4,000 字",
+        type3Desc: "以论点为核心，提出立场、概念性介入或方法论观点。",
+        type4Name: "方法 / 框架",
+        type4Len: "2,000–6,000 字",
+        type4Desc: "介绍框架、模型、标注体系、分析流程或编辑方法。",
+        type5Name: "综合学论文",
+        type5Len: "1,500–6,000 字",
+        type5Desc: "适用于哈基米综合学的跨学科或边界延展型文章。",
+        criteriaTitle: "编辑标准与流程",
+        criteriaIntro: "稿件通常将依据以下标准进行评估：",
+        criteria1: "是否明确适配 Hature 某一栏目，或是否对跨栏目关联给出有说服力的说明。",
+        criteria2: "问题、论点、模型、方法或解释是否具有原创性。",
+        criteria3: "结构是否清晰，逻辑是否一致，文本是否具有可读性。",
+        criteria4: "是否合理使用证据、例子、参考文献或形式化推理。",
+        criteria5: "呈现质量是否达到基本要求，并遵守期刊政策。",
+        criteriaTail: "编辑流程通常包括初筛、格式检查、编辑评估，以及在适当情况下进行外部评阅或内部讨论。Hature 保留在正式进入编辑评估前要求作者进行技术性修改的权利。",
+        formatTitle: "格式要求",
+        formatIntro: "为保持投稿流程简洁与开放，Hature 接受灵活但基本规范的稿件结构。",
+        formatTh1: "必要部分",
+        formatTh2: "要求",
+        format1Name: "标题",
+        format1Desc: "简洁明确，建议不超过 25 个词。",
+        format2Name: "作者信息",
+        format2Desc: "作者姓名、单位及通讯作者邮箱。",
+        format3Name: "摘要",
+        format3Desc: "150–300 词，概述问题、方法或思路及主要结论。",
+        format4Name: "关键词",
+        format4Desc: "3–8 个关键词。",
+        format5Name: "正文",
+        format5Desc: "建议包含：引言、主体分析 / 结果、讨论、结论。",
+        format6Name: "参考文献",
+        format6Desc: "初次投稿可采用任意一致的学术引文格式，统一性比具体格式更重要。",
+        format7Name: "图表",
+        format7Desc: "需有编号、标题和简要图注，并在正文中引用。",
+        formatCallout: "初次投稿时，Hature 不要求严格遵守某一种固定引文格式。结构清晰、写法统一即可。",
+        languagesTitle: "语言政策",
+        languages1: "Hature 接受多语言投稿。英文是推荐语言，因为具有更广泛的传播性，但中文及其他语言稿件如写作清晰、结构合适，也可被考虑。",
+        languages2: "作者可以提交双语标题、摘要或关键词。如稿件并非英文，建议尽可能提供英文标题和英文摘要。",
+        languages3: "允许使用语言润色，包括 AI 辅助语言润色，但稿件的科学性与思想责任仍完全由作者承担。",
+        submissionTitle: "初次投稿",
+        submissionIntro: "初次投稿时，作者应提供以下内容：",
+        submission1: "主稿文件，格式可为 PDF、DOCX 或兼容格式。",
+        submission2: "标题、作者信息、摘要与关键词。",
+        submission3: "对应 Hature 四个核心栏目之一的栏目选择。",
+        submission4: "与稿件直接相关的图表、附件或补充材料。",
+        submission5: "如适用，请附数据与代码可获得性说明。",
+        submissionTail: "在初次投稿阶段，Hature 鼓励作者优先保证内容完整和表达清晰，而不是过分追求形式上的精修。",
+        finalTitle: "最终提交",
+        final1: "如稿件被接收或收到修改邀请，作者可能需要提交清洁终稿、可编辑源文件、更高质量图件以及更新后的元数据。",
+        final2: "最终文件应纳入编辑部要求的所有修改，并确保参考文献、图表编号和必要声明均已统一整理。",
+        suppTitle: "补充材料",
+        supp1: "补充材料可包括附录、补充图表、数据集、代码文件、扩展方法、标注材料或与稿件直接相关的辅助文档。",
+        supp2: "接受的格式可包括 PDF、ZIP、TXT、CSV、XLSX、PNG、JPG 以及常见代码或文本格式。",
+        supp3: "每份补充材料应有清晰文件名和简短说明。",
+        supp4: "如补充材料与正文相关，应在正文中明确引用。",
+        ethicsTitle: "伦理、原创性与 AI 使用",
+        ethics1: "提交至 Hature 的稿件必须具有原创性，引用与署名应准确，不得在作者身份或来源上造成误导。作者须对文本、数据、观点、引文与图像表达的准确性负责。",
+        ethics2: "允许使用 AI 工具，但需遵守以下原则：",
+        ethics3: "允许使用 AI 进行语言润色、结构调整、翻译与初步草拟辅助。",
+        ethics4: "作者对全部提交内容承担完整责任。",
+        ethics5: "AI 工具不能列为作者。",
+        ethics6: "如果 AI 在写作、图像生成或数据辅助分析中被较大程度使用，作者应在致谢或方法说明中适当披露。",
+        ethics7: "Hature 不禁止 AI 润色，但要求透明、可解释且由人类作者承担责任。",
+        feesTitle: "费用与开放",
+        fees1: "Hature 目前不收取投稿费、审稿费或文章处理费。现阶段没有版面费，也没有强制性出版费用。",
+        fees2: "若平台未来发生调整，相关政策可能更新，但任何费用政策变化都会提前明确公布。",
+        formsTitle: "声明与表格",
+        forms1: "根据稿件类型，作者可能需要提供以下声明：",
+        forms2: "通讯作者确认",
+        forms3: "原创性声明",
+        forms4: "利益冲突声明",
+        forms5: "数据可得性说明",
+        forms6: "AI 使用披露（如适用）",
+        forms7: "在当前阶段，Hature 尽量保持声明要求轻量化，重点在于透明度，而非额外行政负担。",
+        footerLeft: "© " + new Date().getFullYear() + " Hature Publishing · 哈基米研究期刊",
+        footerRight: "作者指南 · 编辑说明页面"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      document.getElementById("btn-zh").classList.toggle("active", lang === "zh");
+
+      localStorage.setItem("hature-lang", lang);
+    }
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const savedLang = localStorage.getItem("hature-lang") || "en";
+    setLanguage(savedLang);
   </script>
 </body>
 </html>
